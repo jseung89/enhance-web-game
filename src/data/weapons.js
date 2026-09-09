@@ -57,6 +57,8 @@ export const weaponRenderConfig = {
   17: { cropLeft: 0, cropRight: 2, scale: 2.1, cardScale: 0.8, altarScale: 2.18, battleScale: 1.54, offsetX: -3, offsetY: 0, idleRotation: -8, pivotX: "18%", pivotY: "82%" },
   18: { cropLeft: 0, cropRight: 2, scale: 2.12, cardScale: 0.8, altarScale: 2.2, battleScale: 1.56, offsetX: -4, offsetY: 0, idleRotation: -8, pivotX: "18%", pivotY: "82%" },
   19: { cropLeft: 0, cropRight: 2, scale: 2.14, cardScale: 0.82, altarScale: 2.22, battleScale: 1.58, offsetX: -4, offsetY: 0, idleRotation: -8, pivotX: "18%", pivotY: "82%" },
-  20: { cropLeft: 5, cropRight: 20, scale: 2.25, cardScale: 0.78, altarScale: 2.25, battleScale: 1.62, offsetX: -2, offsetY: 0, idleRotation: -8, pivotX: "18%", pivotY: "82%" }
+  // Rebuilt with the common 6-frame 2172×724 canvas. Keep generous padding
+  // so the radiant club's sunburst never clips in card, altar, or battle views.
+  20: { cropLeft: 0, cropRight: 0, scale: 2.05, cardScale: 0.76, altarScale: 2.1, battleScale: 1.5, offsetX: 0, offsetY: 0, idleRotation: -6, pivotX: "50%", pivotY: "76%" }
 };
 export const getWeaponRenderConfig = (level) => weaponRenderConfig[Math.max(0, Math.min(20, level))] || weaponRenderConfig[0];
