@@ -12,6 +12,9 @@ button:disabled { opacity:.55; cursor:not-allowed; filter:grayscale(.5); }
 .cat { font-size:30px; background:#6b3f9e; padding:6px; border-radius:14px; box-shadow:0 0 0 3px #000; }
 .resources { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
 .resources span { background:#121a2d; border:2px solid #2c3657; padding:10px 16px; border-radius:10px; font-size:18px; font-weight:800; }
+.header-actions { display:flex; gap:8px; align-items:center; }
+.cheat-btn { background:linear-gradient(135deg,#f4d35b,#d77b2c); color:#241629; border:2px solid #fff0a6; border-radius:10px; padding:10px 12px; font-weight:1000; box-shadow:0 3px 0 #6f3518,0 0 14px rgba(242,200,91,.26); }
+.cheat-btn:hover { filter:brightness(1.08); transform:translateY(-1px); }
 .ghost-btn { background:#141d31; border:2px solid #455074; color:#f7eed7; border-radius:10px; padding:10px 14px; font-weight:900; box-shadow:0 3px 0 #050713; }
 .tabs { display:flex; justify-content:center; gap:8px; margin:12px 0; }
 .tabs button { min-width:150px; padding:13px 18px; border-radius:14px 14px 8px 8px; background:#1a2238; color:#e8ddc0; border:3px solid #29324f; font-weight:900; font-size:18px; }
@@ -157,6 +160,7 @@ button:disabled { opacity:.55; cursor:not-allowed; filter:grayscale(.5); }
   .pve-roulette-zone { grid-template-columns:1fr; }
   .battle-log { grid-column:auto; }
   .resources span { font-size:14px; padding:8px; }
+  .header-actions { width:100%; justify-content:flex-end; }
 }
 @media (max-width: 720px) {
   .app-shell { padding:8px; }
