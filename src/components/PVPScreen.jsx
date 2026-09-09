@@ -6,6 +6,7 @@ import BattleLog from './BattleLog.jsx';
 import { getWeapon, weapons, getWeaponRenderConfig } from '../data/weapons.js';
 import { resultMessage } from '../utils/battleLogic.js';
 import { createTurnResult } from '../utils/rouletteLogic.js';
+import { assetUrl } from '../utils/assetUrl.js';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function Hearts({ hp, max }) { return <div className="hearts">{Array.from({length:max}).map((_,i)=><span key={i} className={i<hp?'alive':''}>♥</span>)}</div>; }
@@ -119,15 +120,15 @@ export default function PVPScreen({ state, setState }) {
         <div className={`opponent-duel floating-combat-unit ${enemyAttack?'enemy-lunge':''}`}>
           <div className="nameplate">상대 +{opponent.level} {opponent.weapon.name}</div><Hearts hp={opHp} max={5}/>
           <div className="battle-aura-ring pvp-aura" />
-          <SpritePlayer src={`/assets/weapons/${opponent.weapon.file}`} playing={enemyAttack} mirrored scale={0.78} variant="pvp" onDone={() => setEnemyAttack(false)} />
-          {effect?.target==='opponent' && <EffectPlayer playKey={effect.key} src={`/assets/effects/${effect.file}`} className="hit-effect duel-hit-op" scale={0.22} onDone={() => setEffect(null)} />} 
+          <SpritePlayer src={assetUrl(`assets/weapons/${opponent.weapon.file}`)} playing={enemyAttack} mirrored scale={0.78} variant="pvp" onDone={() => setEnemyAttack(false)} />
+          {effect?.target==='opponent' && <EffectPlayer playKey={effect.key} src={assetUrl(`assets/effects/${effect.file}`)} className="hit-effect duel-hit-op" scale={0.22} onDone={() => setEffect(null)} />} 
         </div>
         <div className="duel-vs">VS</div>
         <div className={`my-duel floating-combat-unit ${playerAttack?'weapon-lunge-up':''}`}>
           <div className="nameplate">나 +{state.enhanceLevel} {playerWeapon.name}</div><Hearts hp={myHp} max={5}/>
           <div className="battle-aura-ring pvp-aura" />
-          <SpritePlayer src={`/assets/weapons/${playerWeapon.file}`} playing={playerAttack} variant="pvp" scale={Math.max(0.78, (playerRender.battleScale ?? playerRender.scale ?? 1.8) * 0.42)} cropLeft={playerRender.cropLeft} cropRight={playerRender.cropRight} cropTop={playerRender.cropTop} cropBottom={playerRender.cropBottom} offsetX={playerRender.offsetX} offsetY={playerRender.offsetY} idleRotation={playerRender.idleRotation} onDone={() => setPlayerAttack(false)} />
-          {effect?.target==='me' && <EffectPlayer playKey={effect.key} src={`/assets/effects/${effect.file}`} className="hit-effect duel-hit-me" scale={0.22} onDone={() => setEffect(null)} />} 
+          <SpritePlayer src={assetUrl(`assets/weapons/${playerWeapon.file}`)} playing={playerAttack} variant="pvp" scale={Math.max(0.78, (playerRender.battleScale ?? playerRender.scale ?? 1.8) * 0.42)} cropLeft={playerRender.cropLeft} cropRight={playerRender.cropRight} cropTop={playerRender.cropTop} cropBottom={playerRender.cropBottom} offsetX={playerRender.offsetX} offsetY={playerRender.offsetY} idleRotation={playerRender.idleRotation} onDone={() => setPlayerAttack(false)} />
+          {effect?.target==='me' && <EffectPlayer playKey={effect.key} src={assetUrl(`assets/effects/${effect.file}`)} className="hit-effect duel-hit-me" scale={0.22} onDone={() => setEffect(null)} />} 
         </div>
       </section>
       <section className="pvp-roulette-stack">

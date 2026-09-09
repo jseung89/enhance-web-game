@@ -9,7 +9,7 @@ export const initialState = {
   bestFloor: 1,
   pvpWins: 0,
   pvpLosses: 0,
-  activeTab: 'enhance',
+  activeTab: 'lobby',
   logs: [],
   pveLogs: [],
   pvpLogs: []

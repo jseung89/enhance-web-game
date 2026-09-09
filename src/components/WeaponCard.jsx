@@ -1,6 +1,7 @@
 import React from 'react';
 import SpritePlayer from './SpritePlayer.jsx';
 import { getAttack } from '../utils/enhanceLogic.js';
+import { assetUrl } from '../utils/assetUrl.js';
 
 export default function WeaponCard({ weapon, level, animated = false, mirrored = false, scale = 0.78, className = '' }) {
   return (
@@ -8,7 +9,7 @@ export default function WeaponCard({ weapon, level, animated = false, mirrored =
       <div className="ribbon">현재 장비</div>
       <h2>+{level} {weapon.name}</h2>
       <div className="weapon-stage-card">
-        <SpritePlayer src={`/assets/weapons/${weapon.file}`} playing={animated} loop={animated} mirrored={mirrored} scale={scale} variant="card" />
+        <SpritePlayer src={assetUrl(`assets/weapons/${weapon.file}`)} playing={animated} loop={animated} mirrored={mirrored} scale={scale} variant="card" />
       </div>
       <div className="stat-row"><span>공격력</span><b>⚔ {getAttack(level).toLocaleString()}</b></div>
       <p className="desc">{weapon.description}</p>

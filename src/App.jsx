@@ -5,6 +5,7 @@ import EnhanceScreen from './components/EnhanceScreen.jsx';
 import PVEScreen from './components/PVEScreen.jsx';
 import PVPScreen from './components/PVPScreen.jsx';
 import RankingPage from './components/RankingPage.jsx';
+import Lobby from './components/Lobby.jsx';
 import { clearSave, initialState, loadSave, saveGame } from './utils/storage.js';
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
     <div className="app-shell">
       <Header state={state} onReset={reset}/>
       <TabNav active={state.activeTab} onChange={setTab}/>
+      {state.activeTab === 'lobby' && <Lobby state={state} onNavigate={setTab}/>} 
       {state.activeTab === 'enhance' && <EnhanceScreen key={`enhance-${state.enhanceLevel}`} state={state} setState={setState}/>} 
       {state.activeTab === 'pve' && <PVEScreen key={`pve-${state.currentFloor}-${state.enhanceLevel}`} state={state} setState={setState}/>} 
       {state.activeTab === 'pvp' && <PVPScreen key={`pvp-${state.enhanceLevel}`} state={state} setState={setState}/>} 

@@ -1,4 +1,5 @@
 import { getWeapon } from './weapons.js';
+import { assetUrl } from '../utils/assetUrl.js';
 
 function makeRankingWeapon(level, enhancement = level) {
   const weapon = getWeapon(level);
@@ -7,8 +8,8 @@ function makeRankingWeapon(level, enhancement = level) {
     level: weapon.level,
     name: weapon.name,
     enhancement,
-    imageUrl: `/assets/weapons/${weapon.file}`,
-    spriteUrl: `/assets/weapons/${weapon.file}`,
+    imageUrl: assetUrl(`assets/weapons/${weapon.file}`),
+    spriteUrl: assetUrl(`assets/weapons/${weapon.file}`),
     attackType: weapon.attackType,
     specialName: weapon.specialName
   };

@@ -1,14 +1,16 @@
+import { assetUrl } from '../utils/assetUrl.js';
+
 export const monsterImageByName = {
-  '수상한 항아리괴물': '/assets/monsters/monster_01_suspicious_jar_monster.png',
-  '삐죽이 고블린': '/assets/monsters/monster_02_spiky_goblin.png',
-  '눈치보는 박쥐': '/assets/monsters/monster_03_nervous_bat.png',
-  '밤샘 해골병': '/assets/monsters/monster_04_overtime_skeleton.png',
-  '던전 먼지정령': '/assets/monsters/monster_05_dungeon_dust_spirit.png',
-  '외눈 말랑괴수': '/assets/monsters/monster_06_one_eyed_soft_beast.png',
-  '비명 지르는 버섯': '/assets/monsters/monster_07_screaming_mushroom.png',
-  '삐딱한 미믹': '/assets/monsters/monster_08_crooked_mimic.png',
-  '꼰적이 슬라임 대장': '/assets/monsters/monster_09_slime_boss.png',
-  '룬 씹은 멧돼지': '/assets/monsters/monster_10_rune_boar.png'
+  '수상한 항아리괴물': assetUrl('assets/monsters/monster_01_suspicious_jar_monster.png'),
+  '삐죽이 고블린': assetUrl('assets/monsters/monster_02_spiky_goblin.png'),
+  '눈치보는 박쥐': assetUrl('assets/monsters/monster_03_nervous_bat.png'),
+  '밤샘 해골병': assetUrl('assets/monsters/monster_04_overtime_skeleton.png'),
+  '던전 먼지정령': assetUrl('assets/monsters/monster_05_dungeon_dust_spirit.png'),
+  '외눈 말랑괴수': assetUrl('assets/monsters/monster_06_one_eyed_soft_beast.png'),
+  '비명 지르는 버섯': assetUrl('assets/monsters/monster_07_screaming_mushroom.png'),
+  '삐딱한 미믹': assetUrl('assets/monsters/monster_08_crooked_mimic.png'),
+  '꼰적이 슬라임 대장': assetUrl('assets/monsters/monster_09_slime_boss.png'),
+  '룬 씹은 멧돼지': assetUrl('assets/monsters/monster_10_rune_boar.png')
 };
 
 export const monsterNames = [

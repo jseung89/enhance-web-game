@@ -1,5 +1,6 @@
 import { mockHallOfFame, mockMyRanking, mockRankingLogs, mockRankings } from '../data/mockRankings.js';
 import { getWeapon, weapons } from '../data/weapons.js';
+import { assetUrl } from '../utils/assetUrl.js';
 
 export const RANKING_KEYS = {
   rankings: 'enhanceGameRankings_v1',
@@ -38,8 +39,8 @@ export function makeWeaponAsset(level, enhancement = level) {
     name: weapon.name,
     displayName: weapon.name,
     enhancement: toNumber(enhancement, weapon.level),
-    imageUrl: `/assets/weapons/${weapon.file}`,
-    spriteUrl: `/assets/weapons/${weapon.file}`,
+    imageUrl: assetUrl(`assets/weapons/${weapon.file}`),
+    spriteUrl: assetUrl(`assets/weapons/${weapon.file}`),
     attackType: weapon.attackType,
     specialName: weapon.specialName
   };

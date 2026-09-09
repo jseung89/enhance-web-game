@@ -6,6 +6,7 @@ import CombatFx from './CombatFx.jsx';
 import MonsterSprite from './MonsterSprite.jsx';
 import FloatingText from './FloatingText.jsx';
 import { getWeapon, getWeaponRenderConfig } from '../data/weapons.js';
+import { assetUrl } from '../utils/assetUrl.js';
 import { getMonster } from '../data/monsters.js';
 import { getAnimationPlanByResult, resultMessage } from '../utils/battleLogic.js';
 import { RESULT_META } from '../data/roulette.js';
@@ -367,7 +368,7 @@ export default function PVEScreen({ state, setState }) {
             <div className={`weapon-pivot-v6 ${playerAttack ? 'weapon-pivot-swing-v6' : ''}`}>
               <SpritePlayer
                 key={`pve-${weapon.file}-${state.enhanceLevel}`}
-                src={`/assets/weapons/${weapon.file}`}
+                src={assetUrl(`assets/weapons/${weapon.file}`)}
                 playing={playerAttack}
                 loop={false}
                 variant="battle"

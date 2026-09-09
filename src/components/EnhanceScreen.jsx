@@ -3,6 +3,7 @@ import WeaponCard from './WeaponCard.jsx';
 import SpritePlayer from './SpritePlayer.jsx';
 import { enhance, getDowngradeChance, getEnhanceCost, getSuccessRate } from '../utils/enhanceLogic.js';
 import { getWeapon, getWeaponRenderConfig } from '../data/weapons.js';
+import { assetUrl } from '../utils/assetUrl.js';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -141,7 +142,7 @@ export default function EnhanceScreen({ state, setState }) {
           <div className="altar-floor" />
           <div className="altar-pulse" />
           <div className={`weapon-on-altar-v3 weapon-on-altar-v4 weapon-on-altar-v6 ${animPhase === 'silhouette' ? 'silhouette' : ''} ${animPhase === 'reveal' || animPhase.includes('danger-reveal') ? 'pop-reveal' : ''}`}>
-            <SpritePlayer key={`altar-${displayWeapon.file}-${displayLevel}`} src={`/assets/weapons/${displayWeapon.file}`} variant="altar" scale={displayRender.altarScale ?? displayRender.scale ?? 2.05} cropLeft={displayRender.cropLeft} cropRight={displayRender.cropRight} cropTop={displayRender.cropTop} cropBottom={displayRender.cropBottom} offsetX={displayRender.offsetX} offsetY={displayRender.offsetY} idleRotation={displayRender.idleRotation} />
+            <SpritePlayer key={`altar-${displayWeapon.file}-${displayLevel}`} src={assetUrl(`assets/weapons/${displayWeapon.file}`)} variant="altar" scale={displayRender.altarScale ?? displayRender.scale ?? 2.05} cropLeft={displayRender.cropLeft} cropRight={displayRender.cropRight} cropTop={displayRender.cropTop} cropBottom={displayRender.cropBottom} offsetX={displayRender.offsetX} offsetY={displayRender.offsetY} idleRotation={displayRender.idleRotation} />
           </div>
           {(animPhase === 'reveal' || animPhase.includes('danger-reveal')) && <div className="tadan-v3 tadan-v4">따단!</div>}
           {animPhase === 'protect-shield' && <div className="scroll-consumed-pop-v6">수호!</div>}
