@@ -1,5 +1,7 @@
 import React from 'react';
 import SpritePlayer from './SpritePlayer.jsx';
+import ForgeRoom from './ForgeRoom.jsx';
+import './forge.css';
 import { getWeapon, getWeaponRenderConfig } from '../data/weapons.js';
 import { assetUrl } from '../utils/assetUrl.js';
 
@@ -7,17 +9,20 @@ export default function Lobby({ state, onNavigate }) {
   const weapon = getWeapon(state.enhanceLevel);
   const render = getWeaponRenderConfig(state.enhanceLevel);
   const nextFloor = Math.min(state.currentFloor, 20);
+  const continuing = state.expedition && !['won','lost'].includes(state.expedition.phase);
 
   return (
-    <main className="lobby-page">
+    <main className="lobby-page forge-lobby">
+      <header className="forge-intro"><div><p>문 닫는 시간 없는 대장간</p><h1>오늘도, 한 번만 더.</h1></div><span>● 작업 중</span></header>
       <section className="lobby-hero panel">
+        <ForgeRoom/>
         <div className="lobby-hero-copy">
-          <p className="eyebrow">THE FORGE NEVER FORGETS</p>
-          <h1>강화는 멈추는 순간<br /><em>패배한다.</em></h1>
-          <p className="lobby-lead">한 번의 선택으로 무기를 키우고, 던전을 뚫고, 전설을 남기세요.</p>
+          <p className="eyebrow">아홉 개의 문</p>
+          <h1>{continuing ? `${state.expedition.stage}번째 문이` : '불빛 너머로'}<br /><em>{continuing ? '기다리고 있어요.' : '떠날 시간.'}</em></h1>
+          <p className="lobby-lead">강화하고, 싸우고, 전리품을 챙기세요.<br/>세 번째 문마다 보스가 기다립니다.</p>
           <div className="lobby-actions">
-            <button className="lobby-main-action" onClick={() => onNavigate('enhance')}>
-              <span>제단으로</span><b>강화 시작</b><small>다음 강화: +{state.enhanceLevel + 1}</small>
+            <button className="lobby-main-action" onClick={() => onNavigate('run')}>
+              <span>원정 전용 장비 · 기존 재화 유지</span><b>{continuing ? '원정 이어가기 →' : '원정 준비하기 →'}</b><small>전투 9회 · 선택은 당신의 몫</small>
             </button>
             <button className="lobby-side-action" onClick={() => onNavigate('pve')}>
               <span>악마의 동굴</span><b>{nextFloor}층 도전</b><small>보상 확인하기 →</small>
@@ -25,10 +30,8 @@ export default function Lobby({ state, onNavigate }) {
           </div>
         </div>
         <div className="lobby-weapon-showcase" aria-label={`현재 무기 ${weapon.name}`}>
-          <div className="showcase-orbit orbit-one" />
-          <div className="showcase-orbit orbit-two" />
           <div className="showcase-glow" />
-          <span className="showcase-label">CURRENT RELIC</span>
+          <span className="showcase-label">작업대 위의 무기</span>
           <SpritePlayer
             key={`lobby-${weapon.file}-${state.enhanceLevel}`}
             src={assetUrl(`assets/weapons/${weapon.file}`)}
@@ -47,18 +50,12 @@ export default function Lobby({ state, onNavigate }) {
         </div>
       </section>
 
-      <section className="lobby-status-grid">
-        <article className="lobby-status-card"><span>최고 강화</span><strong>+{state.enhanceLevel}</strong><small>{weapon.name}</small></article>
-        <article className="lobby-status-card"><span>탐험 기록</span><strong>{state.bestFloor}<i>층</i></strong><small>악마의 동굴 최고 기록</small></article>
-        <article className="lobby-status-card"><span>보유 강화석</span><strong>💎 {state.stone}</strong><small>다음 강화에 사용할 수 있어요</small></article>
-        <article className="lobby-status-card accent"><span>오늘의 목표</span><strong>+{state.enhanceLevel + 1}</strong><small>한 단계 더, 멈추지 말기</small></article>
-      </section>
-
-      <section className="lobby-briefing panel">
-        <div><p className="eyebrow">NEXT DECISION</p><h2>지금 할 일</h2></div>
-        <p>강화에 성공하면 공격력이 올라가고, 더 깊은 던전에서 더 많은 골드와 강화석을 얻을 수 있습니다.</p>
-        <button className="ghost-btn" onClick={() => onNavigate('ranking')}>전설의 기록 보기</button>
-      </section>
+      <nav className="forge-workbench" aria-label="대장간 활동">
+        <button onClick={()=>onNavigate('enhance')}><span aria-hidden="true">⚒</span><div><small>무기 손질</small><strong>강화 작업대</strong><small>{state.enhanceLevel>=20?'최고 단계 달성':`현재 +${state.enhanceLevel} → 다음 +${state.enhanceLevel+1}`}</small></div><b aria-hidden="true">↗</b></button>
+        <button onClick={()=>onNavigate('pve')}><span aria-hidden="true">⚑</span><div><small>익숙한 모험</small><strong>악마의 동굴</strong><small>{nextFloor}층 도전 · 최고 {state.bestFloor}층</small></div><b aria-hidden="true">↗</b></button>
+        <button onClick={()=>onNavigate('ranking')}><span aria-hidden="true">▤</span><div><small>남겨 둔 발자국</small><strong>기록 펼치기</strong><small>장비와 탐험 기록 확인</small></div><b aria-hidden="true">↗</b></button>
+      </nav>
+      <p className="forge-footnote">무기는 그대로, 모험은 새롭게. 기존 장비와 골드는 원정에 소모되지 않습니다.</p>
     </main>
   );
 }

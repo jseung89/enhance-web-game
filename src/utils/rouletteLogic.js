@@ -28,12 +28,12 @@ export function buildRouletteSegments(weights) {
   });
 }
 
-export function pickResultByWeight(weights) {
+export function pickResultByWeight(weights, random = Math.random) {
   const normalized = normalizeWeights(weights);
-  let roll = Math.random() * 100;
+  let roll = random() * 100;
   for (const key of resultOrder) {
     roll -= normalized[key] || 0;
-    if (roll <= 0) return key;
+    if (roll < 0) return key;
   }
   return resultOrder[resultOrder.length - 1] || 'miss';
 }
